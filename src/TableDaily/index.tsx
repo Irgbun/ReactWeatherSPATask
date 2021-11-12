@@ -1,0 +1,1 @@
+export { TableDaily } from "./TableDaily";
