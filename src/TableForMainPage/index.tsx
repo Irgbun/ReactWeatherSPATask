@@ -1,0 +1,1 @@
+export { TableForMainPage } from "./TableForMainPage";
