@@ -1,0 +1,1 @@
+export { TableHourly } from "./TableHourly";
