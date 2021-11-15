@@ -7,13 +7,8 @@ import { Header } from "../Header";
 
 export class WeatherPage extends React.Component {
   state = {
-    searchValue: "Minsk",
-    token: "",
+    searchValue: "Minsk"
   };
-
-  changeToken = (event) => {
-    this.setState({ token: event.target.token })
-  }
 
   changeSearchValue = (event) => {
     this.setState({ searchValue: event.target.value });
@@ -26,18 +21,15 @@ export class WeatherPage extends React.Component {
           <Header />
         </div>
         <div>
-          <Input value={this.state.token} onChange={ this.changeToken } />
-        </div>
-        <div>
           <Input
             value={this.state.searchValue}
             onChange={this.changeSearchValue}
           />
           <WeatherHOC
             q={this.state.searchValue}
-            token={this.state.token}
             table={TableHourly}
             table2={TableDaily}
+            secondTable={true}
           />
         </div>
       </div>
