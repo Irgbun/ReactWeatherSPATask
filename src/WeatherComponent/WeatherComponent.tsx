@@ -9,7 +9,8 @@ class WeatherComponent extends React.Component {
 
   getData = () => {
     const { fetchData } = this.props;
-    fetchData({ q: this.props.q, ...this.state, appId: this.props.token });
+    const token = process.env.REACT_APP_OPEN_WEATHER_TOKEN;
+    fetchData({ q: this.props.q, ...this.state, appId: token });
   };
 
   componentDidMount() {
@@ -23,13 +24,13 @@ class WeatherComponent extends React.Component {
   }
 
   render() {
-    const { data, isError, isLoading } = this.props;
+    const { data, loadStatus } = this.props;
     return (
       <div>
-        {isError && <p>Что-то пошло не так</p>}
-        {isLoading && !isError && <p>Загрузка</p>}
-        {!isLoading && !isError && <this.props.table data={data} />}
-        {!isLoading && !isError && (
+        {loadStatus === "error" && <p>Что-то пошло не так</p>}
+        {loadStatus === "loading" && <p>Загрузка</p>}
+        {loadStatus === "loaded" && <this.props.table data={data} />}
+        {loadStatus === "loaded" && this.props.secondTable && (
           <this.props.table2 data={data} />
         )}
       </div>
