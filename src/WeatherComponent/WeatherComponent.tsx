@@ -1,7 +1,22 @@
 import React from "react";
 import { WithFetch } from "../WithFetch";
 
-class WeatherComponent extends React.Component {
+interface WeatherComponentProps {
+  fetchData: (q: string, appId: string) => React.ReactNode,
+  data: { coord: object, weather: [], main: object, name: string }[],
+  loadStatus: string,
+  secondTable: boolean,
+  q: string,
+  table: React.JSXElementConstructor<{ data: { coord: object, weather: [], main: object, name: string }[] }>,
+  table2: React.JSXElementConstructor<{ data: { coord: object, weather: [], main: object, name: string }[] }>,
+}
+
+interface WeatherComponentState {
+  units: string,
+  appId: string
+}
+
+class WeatherComponent extends React.Component<WeatherComponentProps, WeatherComponentState> {
   state = {
     units: "metric",
     appId: ""
@@ -17,7 +32,7 @@ class WeatherComponent extends React.Component {
     this.getData();
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: {q: string}) {
     if (this.props.q !== prevProps.q) {
       this.getData();
     }
