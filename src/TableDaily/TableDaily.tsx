@@ -1,6 +1,11 @@
 import css from "./TableDaily.css";
 
-export function TableDaily(props) {
+interface TableDailyProps {
+  data: { coord: object, weather: [], main: { temp: number }, name: string }
+}
+
+
+export const TableDaily: React.FC<TableDailyProps> = (props) => {
   return (
     <table>
       <tbody>

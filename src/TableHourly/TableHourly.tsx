@@ -1,6 +1,10 @@
 import css from "./TableHourly.css";
 
-export function TableHourly(props) {
+interface TableHourlyProps {
+  data: { coord: object, weather: [], main: { temp: number }, name: string }
+}
+
+export const TableHourly: React.FC<TableHourlyProps> = (props) => {
   return (
     <table>
       <tbody>
