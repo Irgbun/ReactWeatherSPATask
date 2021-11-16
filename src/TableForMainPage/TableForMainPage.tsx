@@ -1,6 +1,10 @@
 import css from "./TableForMainPage.css";
 
-export function TableForMainPage(props) {
+interface TableForMainPageProps {
+  data: { coord: object, weather: [], main: { temp: number }, name: string }
+}
+
+export const TableForMainPage: React.FC<TableForMainPageProps> = (props) => {
   return (
     <table>
       <tbody>
