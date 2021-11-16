@@ -1,7 +1,17 @@
 import React from "react";
 
-export const WithFetch = (Component, url) => {
-  return class SomeClass extends React.Component {
+
+interface SomeClassState {
+  data: { coord: object, weather: [], main: object, name: string }[],
+  loadStatus: string
+}
+
+
+export const WithFetch = (Component: React.JSXElementConstructor<{ 
+  data: { coord: object, weather: [], main: object, name: string }[], loadStatus: string, fetchData: React.ReactNode, 
+}>, 
+url: string) => {
+  return class SomeClass extends React.Component<{}, SomeClassState> {
     state = {
       data: [],
       loadStatus: "unknown"
