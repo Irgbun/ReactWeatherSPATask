@@ -4,11 +4,17 @@ import React from "react";
 interface SomeClassState {
   data: { coord: object, weather: [], main: object, name: string }[],
   loadStatus: string
+} 
+
+interface WithFetchProps {
+  fetchData: (params: Record<string, string>) => void
 }
 
 
-export const WithFetch = (Component: React.JSXElementConstructor<{ 
-  data: { coord: object, weather: [], main: object, name: string }[], loadStatus: string, fetchData: React.ReactNode, 
+export const WithFetch: WithFetchProps['fetchData'] = <Props extends Record<string, any>, Data>(Component: React.JSXElementConstructor<Props & {
+  data: Data, 
+  loadStatus: string, 
+  fetchData: (params: Record<string, string>) => void
 }>, 
 url: string) => {
   return class SomeClass extends React.Component<{}, SomeClassState> {
@@ -17,7 +23,7 @@ url: string) => {
       loadStatus: "unknown"
     };
 
-    getData = (params = {}) => {
+    getData = (params: Record<string, string> = {}) => {
       this.setState({ loadStatus: "loading" });
       const par = new URLSearchParams(params).toString();
       fetch(`${url}?${par}`)

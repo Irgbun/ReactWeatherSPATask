@@ -2,7 +2,7 @@ import React from "react";
 import { WithFetch } from "../WithFetch";
 
 interface WeatherComponentProps {
-  fetchData: (q: string, appId: string) => React.ReactNode,
+  fetchData: (params: {q: string, appId: string, units: string}) => void,
   data: { coord: object, weather: [], main: object, name: string }[],
   loadStatus: string,
   secondTable: boolean,
@@ -12,20 +12,18 @@ interface WeatherComponentProps {
 }
 
 interface WeatherComponentState {
-  units: string,
-  appId: string
+  units: string
 }
 
 class WeatherComponent extends React.Component<WeatherComponentProps, WeatherComponentState> {
   state = {
-    units: "metric",
-    appId: ""
+    units: "metric"
   };
 
   getData = () => {
     const { fetchData } = this.props;
-    const token = process.env.REACT_APP_OPEN_WEATHER_TOKEN;
-    fetchData({ q: this.props.q, ...this.state, appId: token });
+    const token = process.env.REACT_APP_OPEN_WEATHER_TOKEN as string;
+    fetchData({ q: this.props.q, appId: token, ...this.state  });
   };
 
   componentDidMount() {
@@ -55,4 +53,4 @@ class WeatherComponent extends React.Component<WeatherComponentProps, WeatherCom
 
 const weatherAPIURL = "https://api.openweathermap.org/data/2.5/weather";
 
-export const WeatherHOC = WithFetch(WeatherComponent, weatherAPIURL);
+export const WeatherHOC = WithFetch< { q: string, appId: string, units: string }, { main: object, name: string }[]>(WeatherComponent, weatherAPIURL);
