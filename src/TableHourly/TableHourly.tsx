@@ -1,7 +1,7 @@
 import css from "./TableHourly.css";
 
 interface TableHourlyProps {
-  data: { coord: object, weather: [], main: { temp: number }, name: string }
+  data: { main: { temp: number } }[]
 }
 
 export const TableHourly: React.FC<TableHourlyProps> = (props) => {
@@ -35,31 +35,31 @@ export const TableHourly: React.FC<TableHourlyProps> = (props) => {
           <td>24</td>
         </tr>
         <tr>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
         </tr>
       </tbody>
     </table>
