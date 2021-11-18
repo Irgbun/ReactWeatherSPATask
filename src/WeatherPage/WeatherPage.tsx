@@ -5,12 +5,18 @@ import { TableHourly } from "../TableHourly";
 import { TableDaily } from "../TableDaily";
 import { Header } from "../Header";
 
-export class WeatherPage extends React.Component {
+
+interface WeatherPageState {
+  searchValue: string
+}
+
+
+export class WeatherPage extends React.Component<{}, WeatherPageState> {
   state = {
     searchValue: "Minsk"
   };
 
-  changeSearchValue = (event) => {
+  changeSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchValue: event.target.value });
   };
 

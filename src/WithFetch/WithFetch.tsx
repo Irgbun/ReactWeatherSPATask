@@ -1,13 +1,29 @@
 import React from "react";
 
-export const WithFetch = (Component, url) => {
-  return class SomeClass extends React.Component {
+
+interface SomeClassState {
+  data: { coord: object, weather: [], main: object, name: string }[],
+  loadStatus: string
+} 
+
+interface WithFetchProps {
+  fetchData: (params: Record<string, string>) => void
+}
+
+
+export const WithFetch: WithFetchProps['fetchData'] = <Props extends Record<string, any>, Data>(Component: React.JSXElementConstructor<Props & {
+  data: Data, 
+  loadStatus: string, 
+  fetchData: (params: Record<string, string>) => void
+}>, 
+url: string) => {
+  return class SomeClass extends React.Component<{}, SomeClassState> {
     state = {
       data: [],
       loadStatus: "unknown"
     };
 
-    getData = (params = {}) => {
+    getData = (params: Record<string, string> = {}) => {
       this.setState({ loadStatus: "loading" });
       const par = new URLSearchParams(params).toString();
       fetch(`${url}?${par}`)

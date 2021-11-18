@@ -4,7 +4,11 @@ import { Button } from "../Button";
 import { TableForMainPage } from "../TableForMainPage";
 import { Header } from "../Header";
 
-export class MainPage extends React.Component {
+interface MainPageState {
+  searchValue: string
+}
+
+export class MainPage extends React.Component<{}, MainPageState> {
   state = {
     searchValue: "Minsk"
   };
