@@ -1,7 +1,7 @@
 import css from "./TableForMainPage.css";
 
 interface TableForMainPageProps {
-  data: { coord: object, weather: [], main: { temp: number }, name: string }
+  data: { main: { temp: number }, name: string }[]
 }
 
 export const TableForMainPage: React.FC<TableForMainPageProps> = (props) => {
@@ -15,11 +15,11 @@ export const TableForMainPage: React.FC<TableForMainPageProps> = (props) => {
           <td>Temp Two Day After Tomorrow</td>
         </tr>
         <tr>
-          <td>{props.data.name}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
+        <td>{props.data[0].name}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main?.temp}</td>
+          <td>{props.data[0].main?.temp}</td>
         </tr>
       </tbody>
     </table>

@@ -2,20 +2,27 @@ import React from "react";
 import { WithFetch } from "../WithFetch";
 
 interface WeatherComponentProps {
-  fetchData: (params: {q: string, appId: string, units: string}) => void,
-  data: { coord: object, weather: [], main: object, name: string }[],
-  loadStatus: string,
-  secondTable: boolean,
-  q: string,
-  table: React.JSXElementConstructor<{ data: { coord: object, weather: [], main: object, name: string }[] }>,
-  table2: React.JSXElementConstructor<{ data: { coord: object, weather: [], main: object, name: string }[] }>,
+  fetchData: (params: { q: string; appId: string; units: string }) => void;
+  data: { main: object; name: string }[];
+  loadStatus: string;
+  secondTable: boolean;
+  q: string;
+  table: React.JSXElementConstructor<{
+    data: { main: object; name: string }[];
+  }>;
+  table2: React.JSXElementConstructor<{
+    data: { main: object; name: string }[];
+  }>;
 }
 
 interface WeatherComponentState {
-  units: string
+  units: string;
 }
 
-class WeatherComponent extends React.Component<WeatherComponentProps, WeatherComponentState> {
+class WeatherComponent extends React.Component<
+  WeatherComponentProps,
+  WeatherComponentState
+> {
   state = {
     units: "metric"
   };
@@ -23,14 +30,14 @@ class WeatherComponent extends React.Component<WeatherComponentProps, WeatherCom
   getData = () => {
     const { fetchData } = this.props;
     const token = process.env.REACT_APP_OPEN_WEATHER_TOKEN as string;
-    fetchData({ q: this.props.q, appId: token, ...this.state  });
+    fetchData({ q: this.props.q, appId: token, ...this.state });
   };
 
   componentDidMount() {
     this.getData();
   }
 
-  componentDidUpdate(prevProps: {q: string}) {
+  componentDidUpdate(prevProps: { q: string }) {
     if (this.props.q !== prevProps.q) {
       this.getData();
     }
@@ -53,4 +60,7 @@ class WeatherComponent extends React.Component<WeatherComponentProps, WeatherCom
 
 const weatherAPIURL = "https://api.openweathermap.org/data/2.5/weather";
 
-export const WeatherHOC = WithFetch< { q: string, appId: string, units: string }, { main: object, name: string }[]>(WeatherComponent, weatherAPIURL);
+export const WeatherHOC = WithFetch<
+  WeatherComponentProps,
+  { main: object; name: string }[]
+>(WeatherComponent, weatherAPIURL);

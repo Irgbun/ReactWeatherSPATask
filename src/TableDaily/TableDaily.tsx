@@ -1,7 +1,7 @@
 import css from "./TableDaily.css";
 
 interface TableDailyProps {
-  data: { coord: object, weather: [], main: { temp: number }, name: string }
+  data: { main: { temp: number } }[]
 }
 
 
@@ -22,16 +22,16 @@ export const TableDaily: React.FC<TableDailyProps> = (props) => {
           <td>Temp Tenth Day</td>
         </tr>
         <tr>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
-          <td>{props.data.main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
+          <td>{props.data[0].main.temp}</td>
         </tr>
       </tbody>
     </table>
