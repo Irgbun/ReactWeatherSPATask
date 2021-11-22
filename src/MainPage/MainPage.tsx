@@ -5,35 +5,46 @@ import { TableForMainPage } from "../TableForMainPage";
 import { Header } from "../Header";
 
 interface MainPageState {
-  searchValue: string | any
+  searchValue: string | any,
+  isChange: string
 }
 
 export class MainPage extends React.Component<{}, MainPageState> {
   state = {
-    searchValue: "Minsk"
+    searchValue: "Minsk",
+    isChange: "false"
   };
 
   onClickChangeToMinsk = () => {
-    const { searchValue } = this.state
+    const { searchValue, isChange } = this.state
     this.setState({ searchValue: "Minsk" });
+    this.setState({ isChange: "true" });
     localStorage.setItem('City', searchValue)
+    localStorage.setItem('Change', isChange)
   };
 
   onClickChangeToMoscow = () => {
-    const { searchValue } = this.state
+    const { searchValue, isChange } = this.state
     this.setState({ searchValue: "Moscow" });
+    this.setState({ isChange: "true" });
     localStorage.setItem('City', searchValue)
+    localStorage.setItem('Change', isChange)
   };
 
   onClickChangeToBratislava = () => {
-    const { searchValue } = this.state
+    const { searchValue, isChange } = this.state
     this.setState({ searchValue: "Bratislava" });
+    this.setState({ isChange: "true" });
     localStorage.setItem('City', searchValue)
+    localStorage.setItem('Change', isChange)
   };
 
   componentDidMount() {
     const city = localStorage.getItem('City')
-    this.setState({ searchValue: "Minsk" | city })
+    const isChange = localStorage.getItem('Change')
+    if (isChange === "true") {
+      this.setState({ searchValue: city })
+    } 
   }
 
   render() {
